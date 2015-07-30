@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <iostream>
 #include <fstream>
+#include "../mydelegate/CompletionDelegate.h"
 #include <QtGui>
 #include <QtCore>
 #include "AddressModel.h"
@@ -28,6 +29,10 @@ int main(int argc, char *argv[]){
 
  	QTableView table;
  	table.setModel(&g);
+    CompletionDelegate delegate;
+    for (int i = 0; i < g.rowCount(); ++i){
+        table.setItemDelegateForRow(i, &delegate);
+    }
  	table.show();
 
     return a.exec();

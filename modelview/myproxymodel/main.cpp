@@ -1,13 +1,13 @@
 #include <QApplication>
 #include <iostream>
 #include <fstream>
-#include "FilteringView.h"
 #include "CheckableAddressBookModel.h"
+#include "FilteringView.h"
 
 int main(int argc, char *argv[]){
-	if(argc != 2){
-		return std::cerr<<"No!"<<std::endl;
-	}
+    if(argc != 2){
+        return std::cerr<<"No!"<<std::endl;
+    }
     QApplication a(argc,argv);
 
     std::ifstream file;
@@ -16,13 +16,13 @@ int main(int argc, char *argv[]){
     std::string line;
     std::string alltext;
     while(getline(file, line)){
-    	alltext += line;
-       	alltext += "\n";
+        alltext += line;
+        alltext += "\n";
     }
     file.close();
     QString filetext(QString::fromStdString(alltext));
-   	CheckableAddressBookModel g(filetext);
-	FilteringView h(&g);
-	h.show();
-	return a.exec();
+    CheckableAddressBookModel g(filetext);
+    FilteringView h(&g);
+    h.show();
+    return a.exec();
 }

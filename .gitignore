@@ -4,6 +4,9 @@
 *.o
 *.obj
 
+#table files
+*.csv
+
 # Precompiled Headers
 *.gch
 *.pch

@@ -1,10 +1,10 @@
 #include <QApplication>
+#include <QtGui>
 #include <iostream>
 #include <fstream>
-#include "FilteringView.h"
-#include "CheckableAddressBookModel.h"
+#include "DnDAddressModel.h"
 
-int main(int argc, char *argv[]){
+int main( int argc, char* argv[] ){
 	if(argc != 2){
 		return std::cerr<<"No!"<<std::endl;
 	}
@@ -21,8 +21,21 @@ int main(int argc, char *argv[]){
     }
     file.close();
     QString filetext(QString::fromStdString(alltext));
-   	CheckableAddressBookModel g(filetext);
-	FilteringView h(&g);
-	h.show();
+
+	DnDAddressModel model(filetext);
+
+	QListView listView;
+	listView.setModel(&model);
+	listView.setModelColumn(0);
+	listView.show();
+
+	QTreeView treeView;
+	treeView.setModel(&model);
+	treeView.show();
+
+	QTableView tableView;
+	tableView.setModel(&model);
+	tableView.show();
+
 	return a.exec();
 }

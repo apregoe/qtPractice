@@ -3,7 +3,7 @@
 FilteringView::FilteringView(QAbstractItemModel* model, QWidget * parent, Qt::WindowFlags f)
 		: QWidget(parent, f){
 	this->setWindowTitle(tr("Filter View"));
-	proxyModel = new QSortFilterProxyModel(this);
+	proxyModel = new TrasposeProxyModel(this);
 	proxyModel->setSourceModel(model);
 
 	QVBoxLayout *lay = new QVBoxLayout(this);
@@ -37,15 +37,7 @@ FilteringView::FilteringView(QAbstractItemModel* model, QWidget * parent, Qt::Wi
 	//setFilterFixedString() || setFilteredWildcard()
 	connect(edit, SIGNAL(textChanged(const QString &)),
 			proxyModel, SLOT(setFilterRegExp(const QString &)));
-	connect(comboBox, SIGNAL(activated(int)),
-			this, SLOT(setFilterKeyColumn(int)));
 }
-
-void FilteringView::setFilterKeyColumn(int i){
-	return proxyModel->setFilterKeyColumn(i);
-}
-
-
 
 
 
