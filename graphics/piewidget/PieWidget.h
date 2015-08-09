@@ -15,6 +15,8 @@ protected:
 	void paintEvent(QPaintEvent* event);
 private:
 	QHash<QString, int> values;
+private slots:
+	void lah(){}
 
 };
 
